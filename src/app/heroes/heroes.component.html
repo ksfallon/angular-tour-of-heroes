@@ -1,0 +1,19 @@
+<!-- Displaying the Hero Object here, use hero.name and hero.id to give ALL the INFO about the Hero -->
+<h2>{{hero.name | uppercase}}'s Info!</h2>
+<div>
+  <span>Hero's id: </span>
+  {{hero.id}}
+</div>
+<div>
+  <span>Hero's Name: </span>
+  {{hero.name}}
+</div>
+<!-- Look into MAP here to create a UL and Li's for skills -->
+<div>
+  <span>Hero's Skills: </span>
+  <ul>
+    <li>{{hero.skills[0]}}</li>
+    <li>{{hero.skills[1]}}</li>
+    <li>{{hero.skills[2]}}</li>
+  </ul>
+</div>
