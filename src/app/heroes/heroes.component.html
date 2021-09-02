@@ -1,21 +1,23 @@
 <!-- Displaying the Hero Object here, use hero.name and hero.id to give ALL the INFO about the Hero -->
 <h2>My Heroes</h2>
 <ul class="heroes">
-  <li *ngFor='let hero of heroes' (click)="onSelect(hero)">
+  <li *ngFor='let hero of heroes'
+    (click)="onSelect(hero)"
+    [class.selected]="hero === selectedHero">
     <span class="badge">{{hero.id}}</span> {{hero.name}}
   </li>
 </ul>
 
+<div *ngIf="selectedHero">
 
-<!-- <h2>{{hero.name | uppercase}}'s Info!</h2>
-<div>
-  <span>Hero's id: </span>
-  {{hero.id}}
+  <h2>{{selectedHero.name | uppercase}}'s Info!</h2>
+  <div><span>Hero's id: </span>{{selectedHero.id}}</div>
+  <div>
+    <label for="hero-name">Hero name: </label>
+    <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
+  </div>
+
 </div>
-<div>
-  <label for="name">Hero name: </label>
-  <input id="name" [(ngModel)]="hero.name" placeholder="name">
-</div> -->
 <!-- Look into MAP here to create a UL and Li's for skills -->
 <!-- <div>
   <span>Hero's Attributes: </span>
