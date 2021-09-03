@@ -8,16 +8,15 @@
   </li>
 </ul>
 
-<div *ngIf="selectedHero">
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
+<!-- This Binds the HeroesComponent.selectedHero to the element's hero property - why we use hero instead of selectedHero in hero-detail.component.html -->
+<!-- [hero]="selectedHero" is an Angular property binding -->
 
-  <h2>{{selectedHero.name | uppercase}}'s Info!</h2>
-  <div><span>Hero's id: </span>{{selectedHero.id}}</div>
-  <div>
-    <label for="hero-name">Hero name: </label>
-    <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
-  </div>
 
-</div>
+
+
+
+
 <!-- Look into MAP here to create a UL and Li's for skills -->
 <!-- <div>
   <span>Hero's Attributes: </span>
