@@ -29,7 +29,9 @@ export class HeroesComponent implements OnInit { // HeroesComponent class is exp
   }
 
   getHeroes(): void { // Here is our method to RETRIEVE the heroes from the service (HeroService)
-    this.heroes = this.heroService.getHeroes();
+    this.heroService.getHeroes()
+      .subscribe(heroes => this.heroes = heroes) //Now have added an Observable.subscribe, so it can not return Observable<Hero[]>
+      // *** WE DID THIS BE before getHeroes was SYNCHRONOUS, which isn't likely for fetching data from a remote server with user input (it is with seeded data though), so it needs to be asynchronous
 
     console.log('this is: ', this) //this = HeroesComponent
     console.log('this.heroes is: ', this.heroes) //this.heroes = mock.heroes array
@@ -37,3 +39,7 @@ export class HeroesComponent implements OnInit { // HeroesComponent class is exp
 
 
 }
+
+//The new getHeroes() with subscribe, waits for the Observable to emit the array of heroes - which could happen now or several minutes from now.
+// the subscribe method passes the emitted array to the callback, which sets the component's heroe's property.
+// *** This ASYNCHRONOUS approach WILL WORK when the HeroService requests heroes from the server.
