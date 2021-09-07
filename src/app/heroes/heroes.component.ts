@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service'; // Must import hero.service.ts b/c its where HEREOS is being imported from (Don't need HEROES import here anymore)
-
+import { MessageService } from '../message.service'; // Must import message.service.ts
 @Component({
   selector: 'app-heroes', //This is the name of the component and what is used when you want to insert it into HTML
   templateUrl: './heroes.component.html', //Here is the html page connected to hero.component.ts
@@ -13,7 +13,8 @@ export class HeroesComponent implements OnInit { // HeroesComponent class is exp
 
   heroes: Hero[] = []; //the heroes property is not a declaration:- heroes is an array of Hero that we get from HeroService's which gets the array from mock-heroes.ts)
 
-  constructor(private heroService: HeroService) { } //This is where we are INJECTING and calling on the hero.service.ts
+  constructor(private heroService: HeroService,
+    private messageService: MessageService) { } //This is where we are INJECTING and calling on the hero.service.ts
   // When Angular creates a HeroesComponent, the Dependency Injection system sets the heroService parameter to the singleton instance of HeroService.
   // ****** WHAT DOES THE LINE ABOVE MEAN?!? ******
 
@@ -25,6 +26,7 @@ export class HeroesComponent implements OnInit { // HeroesComponent class is exp
 
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
+    this.messageService.add(`HeroComponent: Selected hero id=${hero.id}`)
     console.log('hero clicked', hero)
   }
 
