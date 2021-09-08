@@ -1,0 +1,10 @@
+<h2>Top Heroes</h2>
+<div class="heroes-menu">
+  <a *ngFor="let hero of heroes"
+      router-link='/detail/{{hero.id}}'>
+    {{hero.name}}
+  </a>
+</div>
+<!-- the *ngFor repeater creates s many links are in the component's heroes array
+  the links are styled as colored blocks in dashboard.component.css
+  Also using the ngFor will put each hero.id into each route'-->
