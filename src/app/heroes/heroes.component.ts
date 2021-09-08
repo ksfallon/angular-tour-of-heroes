@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service'; // Must import hero.service.ts b/c its where HEREOS is being imported from (Don't need HEROES import here anymore)
-import { MessageService } from '../message.service'; // Must import message.service.ts
+// import { MessageService } from '../message.service'; // no longer importing message service
 @Component({
   selector: 'app-heroes', //This is the name of the component and what is used when you want to insert it into HTML
   templateUrl: './heroes.component.html', //Here is the html page connected to hero.component.ts
   styleUrls: ['./heroes.component.css'] //Here is the css page connected to hero.component.ts
 })
 export class HeroesComponent implements OnInit { // HeroesComponent class is exported when it is initialized, should be connected to ngOnInit (line 19)
-
-  selectedHero?: Hero; //if a Hero is selected it is Hero (the specific Hero)
+  //***No longer doing onClick so line 21 isnt needed
+  // selectedHero?: Hero; // if a Hero is selected it is Hero (the specific Hero)
 
   heroes: Hero[] = []; //the heroes property is not a declaration:- heroes is an array of Hero that we get from HeroService's which gets the array from mock-heroes.ts)
 
-  constructor(private heroService: HeroService,
-    private messageService: MessageService) { } //This is where we are INJECTING and calling on the hero.service.ts
+  constructor(private heroService: HeroService) { } //This is where we are INJECTING and calling on the hero.service.ts
   // When Angular creates a HeroesComponent, the Dependency Injection system sets the heroService parameter to the singleton instance of HeroService.
   // ****** WHAT DOES THE LINE ABOVE MEAN?!? ******
 
@@ -24,11 +23,12 @@ export class HeroesComponent implements OnInit { // HeroesComponent class is exp
     console.log('this.getHeroes() is: ', this.getHeroes()) //this = HeroesComponent
   }
 
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-    this.messageService.add(`HeroComponent: Selected hero id=${hero.id}`)
-    console.log('hero clicked', hero)
-  }
+  // *** we are no longer doing onClick so lines 27-31 aren't needed
+  // onSelect(hero: Hero): void {
+  //   this.selectedHero = hero;
+  //   this.messageService.add(`HeroComponent: Selected hero id=${hero.id}`)
+  //   console.log('hero clicked', hero)
+  // }
 
   getHeroes(): void { // Here is our method to RETRIEVE the heroes from the service (HeroService)
     this.heroService.getHeroes()

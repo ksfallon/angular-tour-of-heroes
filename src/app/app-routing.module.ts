@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
-import { Router, RouterModule, Routes } from '@angular/router'; // imports these so the application can have routing functionality.
+import { RouterModule, Routes } from '@angular/router'; // imports these so the application can have routing functionality.
 import { HeroesComponent } from './heroes/heroes.component'; // will give the Router somewhere to go once routes are configured.
 import { DashboardComponent } from './dashboard/dashboard.component'
 import { HeroDetailComponent } from './hero-detail/hero-detail.component'
 
 // this is our routes array, since we imported HeroesComponent we can create a route for it
 const routes: Routes = [
-  { path: 'heroes', component: HeroesComponent },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full'}, // the route directs a URL that fully maatches the empty path to the route whose path is '/dashboard'
   { path: 'dashboard', component: DashboardComponent},
   { path: 'detail/:id', component: HeroDetailComponent}, //the colon (:) in the path indicates that :id is a placeholder for a specific hero id. this is a parameterized route to the routes array that matches the path pattern to the hero detail view
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full'} // the route directs a URL that fully maatches the empty path to the route whose path is '/dashboard'
+  { path: 'heroes', component: HeroesComponent }
 ];
 
 @NgModule({
